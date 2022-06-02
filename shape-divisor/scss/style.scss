@@ -4,81 +4,80 @@
 	box-sizing: border-box;
 }
 
-h1, p {
+/*
+Usamos una variable para ajustar la altura del shape divider.
+
+Las unidades deben ser relativas al ancho del visor para que se mantenga la forma del shape divider. En las diagonales mantiene la misma pendiente y en la elipse el arco.
+*/
+:root{
+	--heightDivider: 20vw;
+}
+
+div{
+	padding: 2rem 0.5rem;
+}
+
+h1, p:not(:last-child) {
 	margin-bottom: 1rem;
 }
 
-p:last-child {
-	margin-bottom: 0;
-}
 
 
-/*
- Primero hacemos position:relative a la caja que llevará el 
- pseudoelemento ::after y le añadimos un padding-top de la misma
- altura que la caja ::after
+
+ /*
+ Usamos padding en lugar de margin para que haya continuidad en el color del fondo.
+ Si usaramos margin se vería el color del body que ahora mismo es blanco.
  */
 .shape-divider {
 	position: relative;
-	padding-top: 200px; // Misma altura que el ::after
-	background-color:darksalmon;
+
+	&:not(:first-child){
+		padding-top: var(--heightDivider);
+	}
+	
+	&:nth-child(odd) {
+		background-color: hsl(158, 94%, 35%);
+	}
+	
+	&:nth-child(even) {
+		background-color: hsl(197, 100%, 70%);
+	}
 
 /*
-Hacemos position: absolute y IMPORTANTE bottom: 1
-Si no ponemos bottom: 1 el ::after se situará mal
+Hacemos position: absolute para situar el pseudoelemento.
 
-El height debe tener la misma altura que el padding-top 
-de la caja padre para no solapar contenidos
+El último elemento no debe tener forma divisoria así que 
+hacemos :not(:last-child) para que desaparezca.
 
-IMPORTANTE poner z-index: 1 para que sea visible el divisor
+IMPORTANTE poner z-index: 1 para que sea visible el divisor.
 */
-	&::after {
+	&:not(:last-child)::after {
 		content: '';
 		position: absolute;
-		bottom: 1;
-		left: 0;
 		width: 100%;
-		height: 200px; // Misma altura que el padding-top de la caja padre
-		background-color: green;
-		clip-path: polygon(0 0, 100% 0, 0 100%);
+		height: var(--heightDivider);
 		z-index: 1;
 	}
 
 /*
-El primer hijo no necesita padding así que se lo quitamos
+Hacemos shape divider diferente en pares e impares.
 */
-	&:nth-child(1) {
-		padding-top: 0;
+	&:nth-child(odd)::after {
+		clip-path: polygon(0 0, 100% 0, 0 100%);
+		background-color: hsl(158, 94%, 35%);
 	}
 
-/*
-Si queremos una forma divisoria distinta en pares e impares 
-hay que indicarlo
-*/
 	&:nth-child(even)::after {
 		clip-path: polygon(0 0, 100% 0, 100% 100%);
+		background-color: hsl(197, 100%, 70%);
 	}
 
 /*
-Si queremos una forma divisoria distinta en una sección concreta 
-hay que indicar la altura de la nueva forma divisoria en el ::after y
-en el padding-top de la siguiente sección
+Podemos hacer un shape divider diferente para una sección concreta.
+clip-path: ellipse(ancho alto at posX posY) respecto de la caja contenedora.
 */
 	&:nth-child(4)::after {
-		// clip-path: polygon(0 0, 100% 0, 50% 100%);
-		clip-path: ellipse(60% 140px at 50% -70px); // (ancho alto at posX posY) respecto de la caja contenedora
-		height: 70px; // Hay que indicar la altura concreta de la forma divisoria
+		clip-path: ellipse(50% var(--heightDivider) at 50% 0%); // 
 	}
-
-	&:nth-child(5) {
-		padding-top: 70px; // Ajustamos el padding a la altura del ::after
-	}
-
-/*
-El último elemento no debe tener forma divisoria así que 
-hacemos content: none para que desaparezca
-*/
-	&:last-child::after {
-		content: none;
-	}
+	
 }
