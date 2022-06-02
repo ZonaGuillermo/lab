@@ -1,0 +1,84 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+h1, p {
+	margin-bottom: 1rem;
+}
+
+p:last-child {
+	margin-bottom: 0;
+}
+
+
+/*
+ Primero hacemos position:relative a la caja que llevará el 
+ pseudoelemento ::after y le añadimos un padding-top de la misma
+ altura que la caja ::after
+ */
+.shape-divider {
+	position: relative;
+	padding-top: 200px; // Misma altura que el ::after
+	background-color:darksalmon;
+
+/*
+Hacemos position: absolute y IMPORTANTE bottom: 1
+Si no ponemos bottom: 1 el ::after se situará mal
+
+El height debe tener la misma altura que el padding-top 
+de la caja padre para no solapar contenidos
+
+IMPORTANTE poner z-index: 1 para que sea visible el divisor
+*/
+	&::after {
+		content: '';
+		position: absolute;
+		bottom: 1;
+		left: 0;
+		width: 100%;
+		height: 200px; // Misma altura que el padding-top de la caja padre
+		background-color: green;
+		clip-path: polygon(0 0, 100% 0, 0 100%);
+		z-index: 1;
+	}
+
+/*
+El primer hijo no necesita padding así que se lo quitamos
+*/
+	&:nth-child(1) {
+		padding-top: 0;
+	}
+
+/*
+Si queremos una forma divisoria distinta en pares e impares 
+hay que indicarlo
+*/
+	&:nth-child(even)::after {
+		clip-path: polygon(0 0, 100% 0, 100% 100%);
+	}
+
+/*
+Si queremos una forma divisoria distinta en una sección concreta 
+hay que indicar la altura de la nueva forma divisoria en el ::after y
+en el padding-top de la siguiente sección
+*/
+	&:nth-child(4)::after {
+		// clip-path: polygon(0 0, 100% 0, 50% 100%);
+		clip-path: ellipse(60% 140px at 50% -70px); // (ancho alto at posX posY) respecto de la caja contenedora
+		height: 70px; // Hay que indicar la altura concreta de la forma divisoria
+	}
+
+	&:nth-child(5) {
+		padding-top: 70px; // Ajustamos el padding a la altura del ::after
+	}
+
+/*
+El último elemento no debe tener forma divisoria así que 
+hacemos content: none para que desaparezca
+*/
+	&:last-child::after {
+		content: none;
+	}
+}
