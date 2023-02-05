@@ -103,7 +103,23 @@ clip-path: ellipse(ancho alto at posX posY) respecto de la caja contenedora.
 		clip-path: ellipse(100% var(--heightDivider) at 100% 0%);
 	}
 
+	/*
+		&:nth-child(10)::after  y  &:nth-child(11)::before  trabajan juntos
+	*/
 	&:nth-child(10)::after {
-		clip-path: ellipse(var(--heightDivider) var(--heightDivider) at 50% 0%);
+		clip-path: circle(50vW at 50% 0%);
+		height: 50vW;
+	}
+
+	&:nth-child(11)::before {
+		height: 50vw;
+	}
+/*
+	&:nth-child(10)::after  y  &:nth-child(11)::before  trabajan juntos
+*/
+
+
+	&:nth-child(11)::after {
+		clip-path: circle(var(--heightDivider) at 50% 0%);
 	}
 }
