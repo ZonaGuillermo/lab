@@ -1,0 +1,96 @@
+@use './variables' as *;
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	scroll-behavior: smooth;
+}
+
+:root {
+	font-family: sans-serif;
+	background-color: $bg-dark;
+	text-align: center;
+}
+
+body {
+	display: grid;
+	grid-template-rows: auto min-content;
+	height: 100vh;
+	/* color for the background pattern */
+	color: hsla(0, 0%, 20%, 0.1);
+}
+
+main {
+	display: grid;
+	grid-template-rows: min-content auto;
+}
+
+main,
+footer {
+	color: #eee;
+}
+
+h1, footer {
+	margin-block: 2rem;
+}
+
+footer {
+	padding: 1rem;
+	background-color: hsla(0, 0%, 50%, 0.1);
+	box-shadow: 0 0px 50px -15px hsla(0, 0%, 30%, 0.3);
+}
+
+footer span {
+	color: red;
+	margin-inline: 0.2rem;
+	font-size: 1.1rem;
+}
+
+h1 {
+	text-transform: uppercase;
+}
+
+section {
+	align-self: center;
+	display: flex;
+	align-items: center;
+	height: 430px;
+	box-shadow: 0 50px 50px -70px hsla(0, 0%, 30%, 0.5);
+}
+
+section img {
+	flex-grow: 1;
+	width: 0;
+	height: 100%;
+	object-fit: cover;
+	opacity: .8;
+	transition: .5s ease;
+}
+
+section img:hover {
+	width: 300px;
+	height: 490px;
+	opacity: .8;
+	filter: contrast(130%) drop-shadow(0 0px 30px hsla(0, 0%, 25%, 0.7));
+}
+
+/*
+	Modify height property of
+	img immediately before an img:hover and
+	img immediately after an img:hover
+ */
+section img:has(+ img:hover),
+section img:hover+img {
+	height: 460px;
+}
+
+@media screen and (max-width: 600px) {
+	section {
+		height: 390px;
+	}
+	
+	section img:hover {
+		width: 200px;
+	}
+}
