@@ -14,25 +14,20 @@
 }
 
 body {
-	scroll-padding-top: auto;
 	display: grid;
-	grid-template-rows: auto min-content;
-	height: 100vh;
+	align-content: space-between;
+	height: 100dvh;
 	/* color for the background pattern */
 	color: hsla(0, 0%, 20%, 0.1);
 }
 
-main {
-	display: grid;
-	grid-template-rows: min-content auto;
-}
-
-main,
+header, main,
 footer {
 	color: #eee;
 }
 
-h1, footer {
+header, 
+footer {
 	margin-block: 2rem;
 }
 
@@ -53,7 +48,6 @@ h1 {
 }
 
 section {
-	align-self: center;
 	display: flex;
 	align-items: center;
 	height: 430px;
