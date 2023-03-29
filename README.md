@@ -7,7 +7,7 @@ In this repository you will find some useful snippets that I create from my own 
 
 # Table of contents
 
-## Shape divider [🔮](https://zonaguillermo.github.io/UI-Design/shape-divider/)
+## Shape divider [🔮](https://zonaguillermo.github.io/lab/shape-divider/)
 A way to create shape dividers between web sections whitout using SVG's or similar, just clean CSS.
 
 ![HTML5](https://img.shields.io/badge/-HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
@@ -16,7 +16,7 @@ A way to create shape dividers between web sections whitout using SVG's or simil
 
 <br>
 
-## A flex-grow Gallery [🔮](https://zonaguillermo.github.io/UI-Design/gallery-flex-grow/)
+## A flex-grow Gallery [🔮](https://zonaguillermo.github.io/lab/gallery-flex-grow/)
 
 A gallery using a couple of effects. The `flex-grow` property and `:has()` pseudoclass with `transition` which give us a sense of expansion when hovering over images, including increasing the size of the previous and next image.
 A way to create shape dividers between web sections whitout using SVG's or similar, just clean CSS.
@@ -26,7 +26,7 @@ A way to create shape dividers between web sections whitout using SVG's or simil
 
 <br>
 
-## Form styling [🔮](https://zonaguillermo.github.io/UI-Design/form-styling/)
+## Form styling [🔮](https://zonaguillermo.github.io/lab/form-styling/)
 
 Getting the forms to look the way we want can be an odyssey. With these snippets I want to show how it is possible to achieve without going crazy.
 
